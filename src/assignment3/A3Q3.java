@@ -64,29 +64,25 @@ public class A3Q3 {
                 joe.move();
             }
             //when bot hit a wall
-            while (!joe.frontIsClear()) {
+            if (!joe.frontIsClear()) {
                 //turn to move
                 joe.turnRight();
                 if (joe.canPickThing()) {
                     joe.pickAllThings();
                 }
+                //}
+                //move to next row
+                joe.move();
+                //pickup if it can
+                joe.canPickThing();
+                {
+                    joe.pickAllThings();
+                }
+                //turn into next row
+                joe.turnRight();
             }
-            //move to next row
-            joe.move();
-            joe.canPickThing();
-            {
-                joe.pickAllThings();
-            }
-            joe.turnRight();
 
-            //when bot is in the bottom right corner, return it to the origin
-            if (joe.isFacingEast() && !joe.frontIsClear()) {
-                joe.turnLeft();
-            }
-            if (!joe.frontIsClear()) {
-                joe.turnLeft();
-                break;
-            }
+
 
             //next row
             for (int counter = i; counter >= 0; counter = counter + 1) {
@@ -97,41 +93,86 @@ public class A3Q3 {
                     }
                     joe.move();
                 }
-                //when bot hit a wall
-                while (!joe.frontIsClear()) {
-                    //turn to move
-                    joe.turnLeft();
-                    //if
-                    if (joe.canPickThing()) {
-                        joe.pickAllThings();
-                    }
-                }
-                //move to next row
-                joe.move();
-                if (joe.canPickThing()) {
-                    joe.pickAllThings();
-                }
-                joe.turnRight();
-
-                //when bot is in the bottom right corner, return it to the origin
                 if (joe.isFacingEast() && !joe.frontIsClear()) {
-                    joe.turnLeft();
-                    if (!joe.frontIsClear()) {
-                        joe.turnLeft();
-
-                    }
-                    }break;
-                }
-
-            
-
-            //when bot is in the bottom right corner, return it to the origin
-            if (joe.isFacingEast() && !joe.frontIsClear()) {
                 joe.turnLeft();
-            }
+            
+            //turn to face south and see if you are at the bottom of the grid
             if (!joe.frontIsClear()) {
                 joe.turnLeft();
-                break;
+
+            }
+
+            //Check if robots on avenue 0
+            while (joe.getAvenue() > 0) {
+                //move to be in right direction
+                while (joe.getDirection() != Direction.WEST) {
+                    //turn till facing west
+                    joe.turnLeft();
+                }
+                //move bot to get to 0
+                joe.move();
+            }
+            //Check if robots on avenue 0
+            while (joe.getAvenue() < 0) {
+                //move to the right direction
+                while (joe.getDirection() != Direction.EAST) {
+                    //turn to face direction
+                    joe.turnLeft();
+                }
+                //move robot to get to 0
+                joe.move();
+            }
+            //Check the Street if its greater than 0
+            while (joe.getStreet() > 0) {
+                //Move to the right direction to move to the origin
+                while (joe.getDirection() != Direction.NORTH) {
+                    //turn to face north direction
+                    joe.turnLeft();
+                }
+                //move bot to 0
+                joe.move();
+            }
+            //Check the stret is lees than zero
+            while (joe.getStreet() < 0) {
+                //rotate to the south direction to move to the origin
+                while (joe.getDirection() != Direction.SOUTH) {
+                    //turn to face south
+                    joe.turnLeft();
+                }
+                //move bot to 0
+                joe.move();
+            }
+                //when bot hit a wall
+                //if (!joe.frontIsClear()) {
+                    //turn to move
+                    //joe.turnLeft();
+                    //if
+                    //if (joe.canPickThing()) {
+                        joe.pickAllThings();
+                    //}
+                    //}
+                    //move to next row
+                    //joe.move();
+                    //pick up stuff while moving
+                    //if (joe.canPickThing()) {
+                        //joe.pickAllThings();
+                    //}
+                    //turn into new row
+                    //joe.turnLeft();
+
+                }
+            }
+
+
+// when it goes through loops check if its on bottom left corner 
+              
+            if (joe.isFacingEast() && !joe.frontIsClear()) {
+                joe.turnLeft();
+            
+            //turn to face south and see if you are at the bottom of the grid
+            if (!joe.frontIsClear()) {
+                joe.turnLeft();
+
             }
 
             //Check if robots on avenue 0
@@ -175,5 +216,9 @@ public class A3Q3 {
                 joe.move();
             }
         }
+
     }
-}
+        }
+    }
+
+
