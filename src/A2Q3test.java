@@ -50,7 +50,11 @@ public class A2Q3test {
         new Thing(kw, 3, 1);
 
 
-        while (true) {
+         joe.move();
+        if(joe.canPickThing()){
+        joe.pickAllThings();}
+       // bot will move around the block if it isn't on 1,1
+        while (joe.getAvenue() != 1 || joe.getStreet() != 1){
 
             //move when it isn't blocked
 
@@ -65,13 +69,56 @@ public class A2Q3test {
             //when hits a wall turn to avoid wall
             while (!joe.frontIsClear()) {
                 joe.turnRight();
-                joe.move();
+                
+                //If the bot is in bottom corner, move to the begining, if not true, will continue code with else loop
+                if(!joe.frontIsClear() && joe.isFacingSouth()) {
+                //Check if robots on avenue 0
+                while (joe.getAvenue() > 1) {
+                    //move to be in right direction
+                    while (joe.getDirection() != Direction.WEST) {
+                        //turn till facing west
+                        joe.turnLeft();
+                    }
+                    //move bot to get to 0
+                    joe.move();
+                }
+                //Check if robots on avenue 0
+                while (joe.getAvenue() < 1) {
+                    //move to the right direction
+                    while (joe.getDirection() != Direction.EAST) {
+                        //turn to face direction
+                        joe.turnLeft();
+                    }
+                    //move robot to get to 0
+                    joe.move();
+                }
+                //Check the Street if its greater than 0
+                while (joe.getStreet() > 1) {
+                    //Move to the right direction to move to the origin
+                    while (joe.getDirection() != Direction.NORTH) {
+                        //turn to face north direction
+                        joe.turnLeft();
+                    }
+                    //move bot to 0
+                    joe.move();
+                }
+                //Check the stret is lees than zero
+                while (joe.getStreet() < 1) {
+                    //rotate to the south direction to move to the origin
+                    while (joe.getDirection() != Direction.SOUTH) {
+                        //turn to face south
+                        joe.turnLeft();
+                    }
+                    //move bot to 0
+                    joe.move();
+                }
+            }else{joe.move();
                 joe.turnRight();
                 //if bot can pick thing, it will
                 if (joe.canPickThing()) {
                     joe.pickAllThings();
                 }
-            }
+            }}
 
             //Move to the left of a row
 
@@ -86,12 +133,56 @@ public class A2Q3test {
             //when hits a wall turn to avoid wall
             while (!joe.frontIsClear()) {
                 joe.turnLeft();
+                //If the bot is in bottom corner, move to the begining, if not true, will continue code with else loop
+                if(!joe.frontIsClear() && joe.isFacingSouth()) {
+                //Check if robots on avenue 0
+                while (joe.getAvenue() > 1) {
+                    //move to be in right direction
+                    while (joe.getDirection() != Direction.WEST) {
+                        //turn till facing west
+                        joe.turnLeft();
+                    }
+                    //move bot to get to 0
+                    joe.move();
+                }
+                //Check if robots on avenue 0
+                while (joe.getAvenue() < 1) {
+                    //move to the right direction
+                    while (joe.getDirection() != Direction.EAST) {
+                        //turn to face direction
+                        joe.turnLeft();
+                    }
+                    //move robot to get to 0
+                    joe.move();
+                }
+                //Check the Street if its greater than 0
+                while (joe.getStreet() > 1) {
+                    //Move to the right direction to move to the origin
+                    while (joe.getDirection() != Direction.NORTH) {
+                        //turn to face north direction
+                        joe.turnLeft();
+                    }
+                    //move bot to 0
+                    joe.move();
+                }
+                //Check the stret is lees than zero
+                while (joe.getStreet() < 1) {
+                    //rotate to the south direction to move to the origin
+                    while (joe.getDirection() != Direction.SOUTH) {
+                        //turn to face south
+                        joe.turnLeft();
+                    }
+                    //move bot to 0
+                    joe.move();
+                }
+            }else{
                 joe.move();
                 joe.turnLeft();
                 //if bot can pick thing, it will
                 if (joe.canPickThing()) {
                     joe.pickAllThings();
                 }
+            }
             }
             if (!joe.frontIsClear() && joe.isFacingSouth()) {
                 //Check if robots on avenue 0
