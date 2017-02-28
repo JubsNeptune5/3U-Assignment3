@@ -23,7 +23,7 @@ public class A3Q4 {
         City kw = new City();
 
         //creating a robot 
-        RobotSE joe = new RobotSE(kw, 1, 1, Direction.EAST);
+        RobotSE joe = new RobotSE(kw, 2, 3, Direction.EAST);
 
         //creating walls  
         new Wall(kw, 1, 1, Direction.WEST);
@@ -39,6 +39,33 @@ public class A3Q4 {
         new Wall(kw, 3, 2, Direction.SOUTH);
         new Wall(kw, 3, 3, Direction.SOUTH);
         new Wall(kw, 3, 4, Direction.SOUTH);
+
+
+        //Move to the edge of box
+        if (joe.frontIsClear()) {
+            joe.move();
+        }
+
+        //skim the wall to find exit
+        while (!joe.frontIsClear()) {
+            joe.turnLeft();
+            //continue moving al9ong the wall
+            while (joe.frontIsClear()) {
+                joe.move();
+                joe.turnRight();
+
+                if (joe.frontIsClear()) {
+                    joe.move();
+                    break;
+                }
+
+                if (!joe.frontIsClear()) {
+                    joe.turnLeft();
+                }
+            }
+
+        }
+
 
     }
 }
