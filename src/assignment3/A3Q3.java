@@ -15,7 +15,7 @@ import becker.robots.Wall;
  *
  * @author laveh2107
  */
-public class A2Q3 {
+public class A3Q3 {
 
     /**
      * @param args the command line arguments
