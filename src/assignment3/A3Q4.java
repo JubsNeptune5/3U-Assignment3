@@ -10,7 +10,7 @@ import becker.robots.RobotSE;
 import becker.robots.Wall;
 
 /**
- *
+ *moving around a room to find an exit
  * @author laveh2107
  */
 public class A3Q4 {
@@ -49,7 +49,7 @@ public class A3Q4 {
         //skim the wall to find exit
         while (!joe.frontIsClear()) {
             joe.turnLeft();
-            //continue moving al9ong the wall
+            //continue moving along the wall
             while (joe.frontIsClear()) {
                 joe.move();
                 joe.turnRight();
