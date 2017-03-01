@@ -29,28 +29,33 @@ public class A3Q6 {
         new Thing(kw, 1, 1);
         new Thing(kw, 1, 1);
         new Thing(kw, 1, 1);
-        
+
         //things in street 2
         new Thing(kw, 2, 1);
         new Thing(kw, 2, 1);
-        
+
         //things in street 3
         new Thing(kw, 3, 1);
         new Thing(kw, 3, 1);
         new Thing(kw, 3, 1);
         new Thing(kw, 3, 1);
         new Thing(kw, 3, 1);
-        
+
         //things in street 4
         new Thing(kw, 4, 1);
         new Thing(kw, 4, 1);
         new Thing(kw, 4, 1);
         new Thing(kw, 4, 1);
-        
+
         //count all the thing in city
         kw.showThingCounts(true);
-        
+
         joe.move();
+
+        while (joe.canPickThing()) {
+            joe.pickAllThings();
+            joe.turnLeft();
         
+        }
     }
 }
