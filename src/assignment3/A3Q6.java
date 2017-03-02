@@ -10,7 +10,7 @@ import becker.robots.RobotSE;
 import becker.robots.Thing;
 
 /**
- *
+ *Create a bar graph with a bot moving things
  * @author laveh2107
  */
 public class A3Q6 {
@@ -50,12 +50,48 @@ public class A3Q6 {
         //count all the thing in city
         kw.showThingCounts(true);
 
+        //move into bar graph
         joe.move();
+        joe.turnLeft();
 
-        while (joe.canPickThing()) {
-            joe.pickAllThings();
-            joe.turnLeft();
-        
+        //keep in loop until the bar graph ends
+        while (true) {
+
+            //pick evrything at the begining of the line
+            while (joe.canPickThing()) {
+                joe.pickAllThings();
+
+                //When the backpack is full place one thing at a time and move
+                while (joe.countThingsInBackpack() > 0) {
+                    joe.putThing();
+                    joe.move();
+                }
+
+                //when there is nothing in backpack move to the start of axis
+                while (joe.countThingsInBackpack() == 0) {
+                    joe.turnAround();
+                    joe.move();
+                    
+                    //follow the line of things without picking up
+                    while (joe.canPickThing()) {
+                        joe.move();
+                    }
+                    
+                    //when the bot isn't a the end of the bar graph
+                    if (joe.getAvenue() != 1 || joe.getStreet() != 5) {
+                        
+                        //turn around when reach end of bar
+                        while (!joe.canPickThing()) {
+                            joe.turnLeft();
+                            joe.move();
+                        }
+                    }
+                    //end code when at the end of the bar
+                    break;
+                }
+            }
+
+
         }
     }
 }
